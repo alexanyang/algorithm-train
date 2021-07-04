@@ -3,8 +3,8 @@ package main
 func main() {
 	// [1,1,1]
 	// 2
-	testData := []int{1, 1, 1, 2}
-	target := 2
+	testData := []int{1, 2, 1, 1, 3}
+	target := 3
 	sum := subarraySum(testData, target)
 	if sum == 2 {
 		// test pass
@@ -21,6 +21,21 @@ func subarraySum(nums []int, k int) int {
 		hashmap[pre]++
 	}
 	return res
+}
+
+// O(n^2)
+func subarraySum(nums []int, k int) int {
+	count := 0
+	for start := 0; start < len(nums); start++ {
+		sum := 0
+		for end := start; end >= 0; end-- {
+			sum += nums[end]
+			if sum == k {
+				count++
+			}
+		}
+	}
+	return count
 }
 
 //func subarraySum2(nums []int, k int) int {
